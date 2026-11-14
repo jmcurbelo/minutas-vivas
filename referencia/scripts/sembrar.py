@@ -28,8 +28,8 @@ def main() -> None:
     Base.metadata.create_all(engine)
     hoy = date.today()
     with Session(engine) as s:
-        h = seguridad.hashear(PASSWORD)
-        personas = [Usuario(nombre=n, email=e, password_hash=h) for n, e in [
+        # Misma contraseña para todos, pero cada hash lleva su propia sal: verás huellas distintas
+        personas = [Usuario(nombre=n, email=e, password_hash=seguridad.hashear(PASSWORD)) for n, e in [
             ("Sergio", "sergio@demo.local"), ("Laura", "laura@demo.local"),
             ("Carlos", "carlos@demo.local"), ("Marta", "marta@demo.local")]]
         proyectos = [Proyecto(nombre=n, cliente=c) for n, c in [
