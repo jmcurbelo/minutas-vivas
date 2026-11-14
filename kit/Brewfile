@@ -1,5 +1,6 @@
 # Herramientas que necesita este proyecto en una Mac.
 # Instalar todo de una vez:  brew bundle
 brew "git"      # control de versiones
+brew "gh"       # conecta la terminal con tu cuenta de GitHub
 brew "uv"       # instala Python y las librerías del proyecto
 brew "mailpit"  # servidor de correo local para pruebas (bandeja en http://localhost:8025)

@@ -13,6 +13,7 @@ Objetivo: dejar la Mac lista para este proyecto, explicando cada herramienta en 
    - `sw_vers -productVersion` y `uname -m` (versión de macOS y si es Apple Silicon)
    - `brew --version`
    - `git --version`
+   - `gh --version` y `gh auth status`
    - `uv --version`
    - `mailpit version`
 
@@ -24,12 +25,14 @@ Objetivo: dejar la Mac lista para este proyecto, explicando cada herramienta en 
 
 3. **El resto (no pide contraseña).** Desde la raíz del proyecto ejecuta `brew bundle` (lee el `Brewfile`). Explica cada herramienta:
    - **git**: guarda el historial de cambios del código.
+   - **gh**: conecta la terminal con la cuenta de GitHub para poder subir el código.
    - **uv**: instala Python y las librerías del proyecto, aisladas del resto de la Mac.
    - **mailpit**: un servidor de correo de mentira para pruebas; los correos se ven en http://localhost:8025.
 
 4. **Verificación final.**
    - Repite el diagnóstico: todo debe salir ✅.
    - Si `git config user.name` está vacío, pregunta nombre y correo y configúralos.
+   - Si `gh auth status` indica que no hay sesión, pide a la persona que ejecute en **Terminal** `gh auth login` (GitHub.com → HTTPS → iniciar sesión con el navegador) y después `gh auth setup-git`. Tú no puedes completar ese inicio de sesión por ella.
    - Arranca Mailpit como servicio (`brew services start mailpit`) y confirma que http://localhost:8025 responde.
 
 5. **Cierre.** Resume en 3 líneas qué se instaló y para qué sirve, y sugiere el siguiente paso: "Ya podemos construir la aplicación. Lee `especificacion.md` y propón un plan."
