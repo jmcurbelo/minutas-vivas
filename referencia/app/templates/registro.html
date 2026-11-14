@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Crear cuenta · Minutas vivas{% endblock %}
+{% block clase %}tarjeta{% endblock %}
+{% block contenido %}
+<h1>Crear cuenta</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="post" action="/registro">
+  <label>Nombre <input name="nombre" value="{{ nombre or '' }}" required autofocus></label>
+  <label>Correo <input type="email" name="email" value="{{ email or '' }}" required></label>
+  <label>Contraseña <input type="password" name="password" minlength="10" required>
+    <small>Mínimo 10 caracteres.</small></label>
+  <button>Crear cuenta</button>
+</form>
+<p class="pie">¿Ya tienes cuenta? <a href="/login">Entrar</a></p>
+{% endblock %}

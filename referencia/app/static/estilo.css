@@ -1,0 +1,39 @@
+:root {
+  --fondo: #f4f6f8; --tarjeta: #ffffff; --texto: #1d2733; --suave: #66788a; --linea: #dfe5eb;
+  --acento: #1f5fa8; --acento-2: #f5b301; --ok: #1e7a46; --error: #b3261e;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 16px/1.5 -apple-system, "Segoe UI", system-ui, sans-serif; }
+a { color: var(--acento); }
+.barra { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: var(--texto); color: #fff; }
+.marca { color: #fff; text-decoration: none; font-weight: 700; font-size: 20px; }
+.marca span { color: var(--acento-2); }
+.sesion { display: flex; gap: 12px; align-items: center; margin: 0; }
+.enlace { background: none; border: 1px solid #ffffff55; color: #fff; padding: 4px 10px; border-radius: 6px; cursor: pointer; }
+main { margin: 40px auto; padding: 0 16px; }
+.tarjeta { max-width: 420px; background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 12px; padding: 28px; }
+.ancho { max-width: 1040px; }
+h1 { margin: 0 0 16px; font-size: 26px; }
+label { display: block; margin: 12px 0; font-weight: 600; font-size: 14px; }
+label small { display: block; font-weight: 400; color: var(--suave); }
+input, select { width: 100%; margin-top: 4px; padding: 10px 12px; border: 1px solid var(--linea); border-radius: 8px; font: inherit; background: #fff; }
+button { background: var(--acento); color: #fff; border: 0; border-radius: 8px; padding: 10px 16px; font: 600 15px inherit; cursor: pointer; }
+.tarjeta button { width: 100%; margin-top: 8px; }
+.pie { margin-top: 16px; font-size: 14px; color: var(--suave); }
+.ok, .error { padding: 10px 12px; border-radius: 8px; font-size: 14px; }
+.ok { background: #e6f4ec; color: var(--ok); } .error { background: #fbe9e7; color: var(--error); }
+.cabecera { display: flex; justify-content: space-between; align-items: center; }
+.filtros a { margin-left: 8px; padding: 6px 12px; border-radius: 999px; text-decoration: none; color: var(--suave); }
+.filtros a.activo { background: var(--texto); color: #fff; }
+.nuevo { display: grid; grid-template-columns: 2fr 1.2fr 1fr 150px auto; gap: 8px; margin: 16px 0 24px; }
+.nuevo input, .nuevo select { margin: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--linea); vertical-align: middle; }
+th { font-size: 13px; color: var(--suave); font-weight: 600; background: #fafbfc; }
+td form { margin: 0; }
+.check { width: 26px; height: 26px; padding: 0; border-radius: 6px; background: #fff; border: 2px solid var(--linea); color: var(--ok); font-weight: 700; }
+tr.hecho td { color: var(--suave); } tr.hecho td:nth-child(2) { text-decoration: line-through; }
+tr.hecho .check { border-color: var(--ok); }
+.etiqueta { background: #fbe9e7; color: var(--error); font-size: 12px; padding: 2px 8px; border-radius: 999px; margin-left: 6px; }
+.vacio { color: var(--suave); }
+@media (max-width: 760px) { .nuevo { grid-template-columns: 1fr; } th:nth-child(3), td:nth-child(3) { display: none; } }

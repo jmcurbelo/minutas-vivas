@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %}Compromisos · Minutas vivas{% endblock %}
+{% block clase %}ancho{% endblock %}
+{% block contenido %}
+<div class="cabecera">
+  <h1>Compromisos</h1>
+  <nav class="filtros">
+    <a href="/compromisos?ver=mios" class="{{ 'activo' if filtro == 'mios' }}">Míos</a>
+    <a href="/compromisos?ver=todos" class="{{ 'activo' if filtro == 'todos' }}">Todos</a>
+  </nav>
+</div>
+
+<form method="post" action="/compromisos" class="nuevo">
+  <input name="descripcion" placeholder="¿Qué se comprometió?" required>
+  <input name="proyecto" placeholder="Proyecto" list="proyectos" required>
+  <datalist id="proyectos">{% for p in proyectos %}<option value="{{ p.nombre }}">{% endfor %}</datalist>
+  <select name="responsable_id">
+    {% for u in usuarios %}<option value="{{ u.id }}" {{ 'selected' if u.id == usuario.id }}>{{ u.nombre }}</option>{% endfor %}
+  </select>
+  <input type="date" name="fecha_limite" value="{{ hoy.isoformat() }}" required>
+  <button>Agregar</button>
+</form>
+
+{% if compromisos %}
+<table>
+  <thead><tr><th></th><th>Compromiso</th><th>Proyecto</th><th>Responsable</th><th>Fecha límite</th></tr></thead>
+  <tbody>
+  {% for c in compromisos %}
+    {% set vencido = c.estado == 'Pendiente' and c.fecha_limite < hoy %}
+    <tr class="{{ 'hecho' if c.estado == 'Hecho' }} {{ 'vencido' if vencido }}">
+      <td>
+        <form method="post" action="/compromisos/{{ c.id }}/hecho">
+          <input type="hidden" name="ver" value="{{ filtro }}">
+          <button class="check" title="Marcar como {{ 'pendiente' if c.estado == 'Hecho' else 'hecho' }}">{{ '✓' if c.estado == 'Hecho' else '' }}</button>
+        </form>
+      </td>
+      <td>{{ c.descripcion }}</td>
+      <td>{{ c.proyecto.nombre }}</td>
+      <td>{{ c.responsable.nombre }}</td>
+      <td>{{ c.fecha_limite.strftime('%d/%m/%Y') }}{% if vencido %} <span class="etiqueta">vencido</span>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="vacio">No hay compromisos todavía. Agrega el primero arriba.</p>
+{% endif %}
+{% endblock %}

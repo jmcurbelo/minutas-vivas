@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titulo %}Restablecer contraseña · Minutas vivas{% endblock %}
+{% block clase %}tarjeta{% endblock %}
+{% block contenido %}
+<h1>¿Olvidaste tu contraseña?</h1>
+<p>Escribe tu correo y te enviaremos un código de 6 dígitos.</p>
+<form method="post" action="/olvide">
+  <label>Correo <input type="email" name="email" required autofocus></label>
+  <button>Enviar código</button>
+</form>
+<p class="pie"><a href="/login">Volver</a></p>
+{% endblock %}
