@@ -1,0 +1,27 @@
+# CI: en cada push y en cada pull request, GitHub presta una máquina (runner)
+# que instala el proyecto y ejecuta los tests. Si algo falla, el check sale en rojo.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: Tests de la app de referencia
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: referencia
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar uv (y Python)
+        uses: astral-sh/setup-uv@v6
+
+      - name: Instalar dependencias
+        run: uv sync
+
+      - name: Ejecutar los tests
+        run: uv run pytest -q
